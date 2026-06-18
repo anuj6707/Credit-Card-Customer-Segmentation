@@ -1,41 +1,41 @@
-# Credit Card Customer Segmentation: K-Means, Hierarchical Clustering & DBSCAN
+# Credit Card Customer Segmentation using Clustering Algorithms
 
-## Project Overview
+## Overview
 
-This project explores customer segmentation using multiple unsupervised machine learning techniques on a credit card customer dataset.
+This project applies multiple unsupervised machine learning techniques to segment credit card customers based on their financial behavior, transaction activity, and credit utilization patterns.
 
-The objective is to identify distinct customer groups based on credit behavior, transaction activity, and account characteristics to support personalized marketing, customer retention, and product recommendation strategies.
+The goal is to identify meaningful customer groups that can support targeted marketing, customer retention, premium product recommendations, and business decision-making.
 
 ---
 
 ## Business Problem
 
-Banks and financial institutions manage customers with varying spending habits, credit limits, and utilization patterns.
+Financial institutions manage customers with different spending habits, credit limits, and transaction behaviors.
 
-Understanding customer segments can help answer questions such as:
+Customer segmentation helps answer questions such as:
 
-- Which customers generate the highest value?
-- Which customers are underutilizing available credit?
-- Which customers should receive premium products?
-- How can retention and engagement strategies be improved?
+* Which customers generate the most value?
+* Which customers are underutilizing their available credit?
+* Which customers should receive premium offers?
+* How can retention and engagement strategies be personalized?
 
 ---
 
-## Dataset Description
+## Dataset Features
 
-The dataset contains customer demographic, account, and transaction information including:
+The dataset contains customer demographic and financial information including:
 
-- Customer Age
-- Dependent Count
-- Months on Book
-- Total Relationship Count
-- Months Inactive (Last 12 Months)
-- Contacts Count (Last 12 Months)
-- Credit Limit
-- Total Revolving Balance
-- Total Transaction Amount
-- Total Transaction Count
-- Average Utilization Ratio
+* Customer Age
+* Dependent Count
+* Months on Book
+* Total Relationship Count
+* Months Inactive (Last 12 Months)
+* Contacts Count (Last 12 Months)
+* Credit Limit
+* Total Revolving Balance
+* Total Transaction Amount
+* Total Transaction Count
+* Average Utilization Ratio
 
 ---
 
@@ -43,12 +43,12 @@ The dataset contains customer demographic, account, and transaction information 
 
 ### Data Cleaning
 
-The following columns were removed:
+Removed:
 
-- CLIENTNUM
-- Naive Bayes prediction columns
+* CLIENTNUM (Customer Identifier)
+* Naive Bayes prediction columns
 
-These variables do not contribute meaningful information for clustering.
+These variables do not provide useful information for clustering.
 
 ### Feature Selection
 
@@ -72,7 +72,7 @@ features = [
 
 ### Feature Scaling
 
-Since clustering algorithms are distance-based, all numerical variables were standardized using:
+Since clustering algorithms rely on distance calculations, all numerical variables were standardized using:
 
 ```python
 StandardScaler()
@@ -82,50 +82,44 @@ StandardScaler()
 
 # K-Means Clustering
 
-## Methodology
-
-K-Means clustering was used to partition customers into distinct groups based on behavioral and financial characteristics.
-
-### Silhouette Score Analysis
+## Silhouette Score Analysis
 
 | K | Silhouette Score |
-|---|---|
-| 2 | 0.758 |
-| 3 | 0.698 |
-| 4 | 0.671 |
-| 5 | 0.649 |
-| 6 | 0.633 |
-| 7 | 0.624 |
-| 8 | 0.620 |
+| - | ---------------- |
+| 2 | 0.758            |
+| 3 | 0.698            |
+| 4 | 0.671            |
+| 5 | 0.649            |
+| 6 | 0.633            |
+| 7 | 0.624            |
+| 8 | 0.620            |
 
-The results indicate strong cluster separation.
+The silhouette scores indicate strong cluster separation.
 
-For business interpretability, K=3 was selected.
+For business interpretability, K = 3 was selected.
 
 ---
 
-## K-Means Results
+## K-Means Customer Segments
 
-### Cluster 1 — Standard Customers
+### Standard Customers
 
-- Customer Count: ~7000
-- Lower credit limits
-- Higher credit utilization
-- Moderate transaction activity
+* Lower credit limits
+* Higher utilization ratios
+* Moderate transaction activity
+* Largest customer segment
 
-### Cluster 2 — Premium Customers
+### Premium Customers
 
-- Customer Count: ~2000
-- Higher credit limits
-- Strong transaction activity
-- Low utilization ratio
+* Higher credit limits
+* Strong transaction activity
+* Lower utilization ratios
 
-### Cluster 3 — Elite Customers
+### Elite Customers
 
-- Customer Count: ~1000
-- Highest credit limits
-- Highest transaction volume
-- Lowest utilization ratio
+* Highest credit limits
+* Highest transaction amounts
+* Lowest utilization ratios
 
 ---
 
@@ -133,43 +127,46 @@ For business interpretability, K=3 was selected.
 
 ## Methodology
 
-Agglomerative Hierarchical Clustering was applied to identify customer groups through a bottom-up clustering approach.
+Agglomerative Hierarchical Clustering was applied to identify customer groups using a bottom-up clustering approach.
 
 A dendrogram was used to visualize cluster formation and merging behavior.
 
-### Silhouette Score Analysis
+## Silhouette Score Analysis
 
 | K | Silhouette Score |
-|---|---|
-| 2 | 0.761 |
-| 3 | 0.654 |
-| 4 | 0.666 |
-| 5 | 0.645 |
-| 6 | 0.604 |
+| - | ---------------- |
+| 2 | 0.761            |
+| 3 | 0.654            |
+| 4 | 0.666            |
+| 5 | 0.645            |
+| 6 | 0.604            |
 
-Hierarchical clustering produced customer segments very similar to K-Means, suggesting stable cluster structures within the dataset.
+Hierarchical Clustering produced segments similar to K-Means, indicating a stable underlying customer structure.
 
 ---
 
 ## Hierarchical Clustering Results
 
-### Standard Customers
+### Cluster 0 – Standard Customers
 
-- Lower credit limits
-- Higher utilization rates
-- Largest customer segment
+* Customer Count: 8,111
+* Credit Limit ≈ 4.7K
+* Transaction Amount ≈ 4.1K
+* Utilization Ratio ≈ 0.33
 
-### Premium Customers
+### Cluster 1 – Premium Customers
 
-- Higher transaction activity
-- Moderate utilization
-- Strong purchasing power
+* Customer Count: 1,164
+* Credit Limit ≈ 18.6K
+* Transaction Amount ≈ 5.4K
+* Utilization Ratio ≈ 0.06
 
-### Elite Customers
+### Cluster 2 – Elite Customers
 
-- Highest credit limits
-- Highest transaction amounts
-- Lowest utilization ratios
+* Customer Count: 852
+* Credit Limit ≈ 32.6K
+* Transaction Amount ≈ 5.6K
+* Utilization Ratio ≈ 0.04
 
 ---
 
@@ -177,122 +174,138 @@ Hierarchical clustering produced customer segments very similar to K-Means, sugg
 
 ## Methodology
 
-DBSCAN was evaluated as a density-based clustering algorithm.
+DBSCAN (Density-Based Spatial Clustering of Applications with Noise) was evaluated to determine whether customer groups could be identified based on density.
 
-Parameters explored:
+Multiple values of:
 
-- eps
-- min_samples
+* eps
+* min_samples
 
-### Observations
+were tested.
 
-DBSCAN was unable to identify meaningful density-separated customer groups within this dataset.
+## Results
 
-The algorithm frequently produced:
+DBSCAN was unable to identify meaningful density-based customer groups.
 
-- A single dominant cluster
-- Excessive noise points
-- Poor cluster separation
+Observed outcomes included:
 
-As a result, silhouette score evaluation was not meaningful.
+* Single-cluster solutions
+* All points classified as noise
+* No meaningful density separation
 
----
+Example:
 
-## DBSCAN Conclusion
+```text
+eps=0.3 → 0 clusters, 10000 noise points
+eps=0.5 → 0 clusters, 10000 noise points
+eps=1.0 → 0 clusters, 10000 noise points
+```
 
-The customer segments in this dataset appear to be compact and well-suited to centroid-based and hierarchical clustering methods.
+### Interpretation
 
-This highlights an important machine learning insight:
+The customer groups in this dataset appear to be compact and better represented by centroid-based and hierarchical clustering methods rather than density-separated structures.
 
-> Different clustering algorithms perform best on different data structures.
+This demonstrates an important machine learning principle:
 
-While K-Means and Hierarchical Clustering successfully identified meaningful customer segments, DBSCAN struggled because the dataset lacked strong density-separated regions.
+> Different clustering algorithms perform best on different types of data.
 
 ---
 
 # Key Business Insights
 
-Three primary customer groups emerged:
+### Standard Customers
 
-## Standard Customers
+Represent the majority of customers.
 
-- Lower credit limits
-- Higher credit utilization
-- Largest customer base
+Characteristics:
 
-### Business Opportunity
+* Lower credit limits
+* Higher credit utilization
+* Moderate transaction activity
 
-- Credit limit increases
-- Cashback incentives
-- Usage-based rewards
+Potential Actions:
 
----
-
-## Premium Customers
-
-- Higher spending behavior
-- Low utilization
-- Healthy credit management
-
-### Business Opportunity
-
-- Premium card upgrades
-- Travel benefits
-- Personalized promotions
+* Credit limit upgrades
+* Cashback incentives
+* Usage-based reward programs
 
 ---
 
-## Elite Customers
+### Premium Customers
 
-- Highest transaction activity
-- Highest credit limits
-- Lowest utilization rates
+Characteristics:
 
-### Business Opportunity
+* Strong spending activity
+* Higher credit limits
+* Responsible credit usage
 
-- VIP loyalty programs
-- Wealth management services
-- Retention-focused marketing
+Potential Actions:
+
+* Premium card upgrades
+* Travel rewards
+* Personalized promotions
+
+---
+
+### Elite Customers
+
+Characteristics:
+
+* Highest transaction activity
+* Highest credit limits
+* Lowest utilization ratios
+
+Potential Actions:
+
+* VIP loyalty programs
+* Wealth management products
+* Retention-focused marketing strategies
+
+---
+
+# Algorithm Comparison
+
+| Algorithm               | Result                                               |
+| ----------------------- | ---------------------------------------------------- |
+| K-Means                 | Successfully identified meaningful customer segments |
+| Hierarchical Clustering | Produced similar and stable customer groups          |
+| DBSCAN                  | Failed to identify meaningful density-based clusters |
 
 ---
 
 # Technologies Used
 
-- Python
-- Pandas
-- NumPy
-- Matplotlib
-- Seaborn
-- Scikit-Learn
-- SciPy
+* Python
+* Pandas
+* NumPy
+* Matplotlib
+* Seaborn
+* Scikit-Learn
+* SciPy
 
 ---
 
 # Machine Learning Concepts Demonstrated
 
-- Unsupervised Learning
-- K-Means Clustering
-- Hierarchical Clustering
-- DBSCAN
-- Customer Segmentation
-- Feature Engineering
-- Feature Scaling
-- Elbow Method
-- Silhouette Score Analysis
-- Dendrogram Analysis
-- Cluster Interpretation
+* Unsupervised Learning
+* Customer Segmentation
+* K-Means Clustering
+* Hierarchical Clustering
+* DBSCAN
+* Feature Scaling
+* Dendrogram Analysis
+* Silhouette Score Evaluation
+* Cluster Interpretation
+* Business Analytics
 
 ---
 
 # Conclusion
 
-This project compared three clustering techniques for customer segmentation in the banking domain.
+This project compared three clustering algorithms for customer segmentation in the banking domain.
 
-Key findings:
+K-Means and Hierarchical Clustering consistently identified meaningful customer groups based on credit limits, transaction activity, and utilization behavior.
 
-- K-Means and Hierarchical Clustering consistently identified meaningful customer segments.
-- Customer groups differed significantly in credit limits, transaction behavior, and utilization patterns.
-- DBSCAN was less effective due to the compact structure of the dataset.
-- Elite and Premium customer groups present strong opportunities for personalized marketing and retention strategies.
+DBSCAN was unable to discover meaningful density-based clusters, suggesting that the dataset is better represented by partitioning and hierarchical approaches.
 
-The project demonstrates how unsupervised learning can transform customer transaction data into actionable business intelligence.
+The analysis demonstrates how clustering techniques can transform customer transaction data into actionable business insights for marketing, retention, and customer relationship management.
