@@ -8,7 +8,7 @@ The goal is to identify meaningful customer groups that can support targeted mar
 
 ---
 
-## Business Problem
+## Problem statement
 
 Financial institutions manage customers with different spending habits, credit limits, and transaction behaviors.
 
@@ -20,25 +20,6 @@ Customer segmentation helps answer questions such as:
 * How can retention and engagement strategies be personalized?
 
 ---
-
-## Dataset Features
-
-The dataset contains customer demographic and financial information including:
-
-* Customer Age
-* Dependent Count
-* Months on Book
-* Total Relationship Count
-* Months Inactive (Last 12 Months)
-* Contacts Count (Last 12 Months)
-* Credit Limit
-* Total Revolving Balance
-* Total Transaction Amount
-* Total Transaction Count
-* Average Utilization Ratio
-
----
-
 ## Data Preprocessing
 
 ### Data Cleaning
@@ -203,16 +184,6 @@ eps=1.0 → 0 clusters, 10000 noise points
 
 ### Interpretation
 
-The customer groups in this dataset appear to be compact and better represented by centroid-based and hierarchical clustering methods rather than density-separated structures.
-
-This demonstrates an important machine learning principle:
-
-> Different clustering algorithms perform best on different types of data.
-
----
-
-# Key Business Insights
-
 ### Standard Customers
 
 Represent the majority of customers.
@@ -263,6 +234,8 @@ Potential Actions:
 
 ---
 
+---
+
 # Algorithm Comparison
 
 | Algorithm               | Result                                               |
@@ -285,20 +258,6 @@ Potential Actions:
 
 ---
 
-# Machine Learning Concepts Demonstrated
-
-* Unsupervised Learning
-* Customer Segmentation
-* K-Means Clustering
-* Hierarchical Clustering
-* DBSCAN
-* Feature Scaling
-* Dendrogram Analysis
-* Silhouette Score Evaluation
-* Cluster Interpretation
-* Business Analytics
-
----
 
 # Conclusion
 
